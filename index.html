@@ -1184,7 +1184,8 @@ function doLogout(){stopAdminLocation();
   $('v-admin').style.display='none';$('v-player').style.display='none';
 }
 function backToMenu(){clearGPS();dmaps(['pMap']);goToMenu();}
-window.addEventListener('load',()=>{const s=lsG('gk_s',null);if(s?.role==='admin'){curSess=s;enterAdmin();}else if(s?.role==='player'){curSess=s;goToMenu();}});
+window.addEventListener('load',()=>{// Always start with session closed — clear any saved session
+  localStorage.removeItem('gk_s');showLForm('choose');});
 
 // ════ MODE MENU ════
 function filterModes(d,btn){
